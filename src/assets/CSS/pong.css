@@ -1,0 +1,108 @@
+.pong-game {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+}
+
+canvas {
+    border: 2px solid #fff;
+}
+
+.score {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: 'Press Start 2P', 'Courier New', 'Courier';
+    text-align: center;
+}
+
+.big-score {
+    font-size: 40px;
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+}
+
+.game-over button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.game-over button:hover {
+    background-color: #45a049;
+}
+
+@media screen and (max-width: 600px) {
+    .pong-game {
+        height: 100vh;
+    }
+
+    canvas {
+        width: 100%;
+        height: auto;
+        border: 1px solid #fff;
+    }
+
+    .score {
+        top: 5px;
+        font-size: 24px;
+    }
+
+    .big-score {
+        font-size: 24px;
+    }
+
+    .game-over {
+        font-size: 18px;
+        padding: 20px;
+    }
+
+    .game-over button {
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .pong-game {
+        height: 4%;
+    }
+
+    canvas {
+        width: 100%;
+        height: auto;
+        border: 1px solid #fff;
+    }
+
+    .score {
+        top: 5px;
+        font-size: 20px;
+    }
+
+    .big-score {
+        font-size: 20px;
+    }
+
+    .game-over {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .game-over button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}

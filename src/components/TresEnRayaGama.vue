@@ -2,22 +2,13 @@
   <div class="tic-tac-toe">
     <h1>3 en Raya</h1>
     <div class="difficulty-buttons">
-      <button 
-        v-for="level in difficulties" 
-        :key="level" 
-        @click="setDifficulty(level)"
-        :class="{ selected: difficulty === level }"
-      >
+      <button v-for="level in difficulties" :key="level" @click="setDifficulty(level)"
+        :class="{ selected: difficulty === level }">
         {{ capitalize(level) }}
       </button>
     </div>
     <div class="board">
-      <div
-        v-for="(cell, index) in board"
-        :key="index"
-        class="cell"
-        @click="makeMove(index)"
-      >
+      <div v-for="(cell, index) in board" :key="index" class="cell" @click="makeMove(index)">
         {{ cell }}
       </div>
     </div>
@@ -152,9 +143,9 @@ export default {
     },
     checkWinner(board) {
       const winPatterns = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-        [0, 4, 8], [2, 4, 6],            // Diagonals
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+        [0, 4, 8], [2, 4, 6],         
       ];
       for (const pattern of winPatterns) {
         const [a, b, c] = pattern;
@@ -169,46 +160,45 @@ export default {
     },
     checkWin(player) {
       const winPatterns = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-        [0, 4, 8], [2, 4, 6],            // Diagonals
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+        [0, 4, 8], [2, 4, 6],          
       ];
       return winPatterns.some(pattern =>
         pattern.every(index => this.board[index] === player)
       );
     },
     async calculateScoreAndSave() {
-  let score;
-  switch (this.difficulty) {
-    case 'Fácil':
-      score = 1;
-      break;
-    case 'Medio':
-      score = 3;
-      break;
-    case 'Imposible':
-      score = 30;
-      break;
-  }
-  
-  const user = auth.currentUser;
-  if (user) {
-    try {
-      // Obtener el nombre de usuario a partir del correo electrónico
-      let userName = user.email.split('@')[0]; // Obtener la parte antes del '@'
-      
-      await addDoc(collection(db, 'ranking'), {
-        userId: user.uid,
-        nombre: userName,
-        puntos: score,
-        fecha: serverTimestamp(),
-        juego: '3 en Raya'
-      });
-    } catch (error) {
-      console.error("Error al guardar la puntuación: ", error);
-    }
-  }
-},
+      let score;
+      switch (this.difficulty) {
+        case 'Fácil':
+          score = 1;
+          break;
+        case 'Medio':
+          score = 3;
+          break;
+        case 'Imposible':
+          score = 30;
+          break;
+      }
+
+      const user = auth.currentUser;
+      if (user) {
+        try {
+          let userName = user.email.split('@')[0]; 
+
+          await addDoc(collection(db, 'ranking'), {
+            userId: user.uid,
+            nombre: userName,
+            puntos: score,
+            fecha: serverTimestamp(),
+            juego: '3 en Raya'
+          });
+        } catch (error) {
+          console.error("Error al guardar la puntuación: ", error);
+        }
+      }
+    },
     resetGame() {
       this.board = Array(9).fill('');
       this.currentPlayer = 'X';
@@ -218,6 +208,8 @@ export default {
   },
 };
 </script>
+
+
 
 <style scoped>
 .tic-tac-toe {
@@ -292,5 +284,11 @@ export default {
   background-color: #45a049;
 }
 
+@media screen and (max-width: 480px) {
 
+  h1{
+    margin-top: 30px;
+  }
+
+}
 </style>

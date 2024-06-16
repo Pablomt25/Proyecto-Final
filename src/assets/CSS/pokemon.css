@@ -1,0 +1,204 @@
+.pokemon-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.loading {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pokemon-image {
+  max-width: 150px;
+}
+
+.word-container {
+  margin-bottom: 20px;
+}
+
+.word-line {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.letter {
+  font-size: 2em;
+  margin: 0 5px;
+  color: #444;
+}
+
+.alphabet-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.alphabet-button {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.guessed-letter {
+  background-color: #537be7;
+  color: white;
+}
+
+.not-guessed-letter {
+  background-color: #007bff;
+  color: white;
+}
+
+.alphabet-button:hover:enabled {
+  background-color: #0056b3;
+}
+
+.lives-container {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.game-over-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.game-over-container p {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.restart-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.restart-button:hover {
+  background-color: #218838;
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 600px) {
+  .pokemon-game {
+    padding: 10px;
+  }
+
+  .image-container {
+    margin-bottom: 10px;
+  }
+
+  .pokemon-image {
+    max-width: 120px;
+  }
+
+  .word-line {
+    margin: 3px 0;
+  }
+
+  .letter {
+    font-size: 1.5em;
+  }
+
+  .alphabet-container {
+    max-width: 250px;
+  }
+
+  .alphabet-button {
+    width: 25px;
+    height: 25px;
+    font-size: 0.9em;
+  }
+
+  .lives-container {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
+  .game-over-container p {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+  }
+
+  .restart-button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pokemon-game {
+    padding: 8px;
+    margin-top: 30px;
+  }
+
+  .image-container {
+    margin-bottom: 8px;
+  }
+
+  .pokemon-image {
+    max-width: 100px;
+  }
+
+  .word-line {
+    margin: 2px 0;
+  }
+
+  .letter {
+    font-size: 1.2em;
+  }
+
+  .alphabet-container {
+    max-width: 200px;
+  }
+
+  .alphabet-button {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8em;
+  }
+
+  .lives-container {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+  }
+
+  .game-over-container p {
+    font-size: 1em;
+    margin-bottom: 6px;
+  }
+
+  .restart-button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+  }
+}

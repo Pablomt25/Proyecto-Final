@@ -1,0 +1,52 @@
+    .snake-game {
+        text-align: center;
+    }
+
+    .game-board {
+        display: inline-block;
+        border: 2px solid #333;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .cell {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+    }
+
+    .snake {
+        background-color: green;
+    }
+
+    .food {
+        background-color: red;
+    }
+
+    @media (max-width: 600px) {
+        .game-board {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cell {
+            width: 15px;
+            height: 15px;
+            border-width: 0.5px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .game-board {
+            width: 200px;
+            height: 200px;
+        }
+
+        .cell {
+            width: 12px;
+            height: 12px;
+            border-width: 0.3px;
+        }
+    }

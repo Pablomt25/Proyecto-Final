@@ -26,13 +26,15 @@
 
     <button type="submit" class="button-submit">{{ isRegister ? 'Registrarse' : 'Entrar' }}</button>
 
-    <p class="p">¿{{ isRegister ? 'Ya tienes cuenta?' : 'Aún no tienes cuenta?' }}<span class="span" @click="toggleAuthMode">{{ isRegister ? 'Iniciar Sesión' : 'Registrarse' }}</span></p>
+    <p class="p">¿{{ isRegister ? 'Ya tienes cuenta?' : 'Aún no tienes cuenta?' }}<span class="span"
+        @click="toggleAuthMode">{{ isRegister ? 'Iniciar Sesión' : 'Registrarse' }}</span></p>
 
     <p class="p line">O</p>
 
     <div class="flex-row">
       <button class="btn google" style="color: black;" @click="signInWithGoogle">
-        <svg version="1.1" width="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <svg version="1.1" width="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
           <path style="fill:#FBBB00;" d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256
           c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456
           C103.821,274.792,107.225,292.797,113.47,309.408z"></path>
@@ -50,8 +52,11 @@
       </button>
       <button class="btn facebook" style="color: black;" @click="signInWithFacebook">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 48 48">
-<path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"></path><path fill="#fff" d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43 24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"></path>
-</svg>
+          <path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"></path>
+          <path fill="#fff"
+            d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43 24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z">
+          </path>
+        </svg>
         <span class="button-text">Facebook</span>
       </button>
     </div>
@@ -60,7 +65,7 @@
 
 <script>
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore"; 
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 export default {
   data() {
@@ -70,13 +75,12 @@ export default {
       username: '',
       isRegister: false,
       errorMessage: '',
-      redirectTo: this.getRedirectUrl() || '/' 
+      redirectTo: this.getRedirectUrl() || '/'
     };
   },
   methods: {
     toggleAuthMode() {
       this.isRegister = !this.isRegister;
-      this.errorMessage = '';  // Clear error message when switching modes
     },
     async registerWithEmailAndPassword() {
       const auth = getAuth();
@@ -154,169 +158,7 @@ export default {
   }
 };
 </script>
+
 <style>
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: #ffffff;
-  padding: 30px;
-  width: 450px;
-  border-radius: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-::placeholder {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.form button {
-  align-self: flex-end;
-}
-
-
-.flex-column > label {
-  color: #151717;
-  font-weight: 600;
-}
-
-.inputForm {
-  border: 1.5px solid #ecedec;
-  border-radius: 10px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  transition: 0.2s ease-in-out;
-}
-
-.input {
-  margin-left: 10px;
-  border-radius: 10px;
-  border: none;
-  width: 85%;
-  height: 100%;
-}
-
-.input:focus {
-  outline: none;
-}
-
-.inputForm:focus-within {
-  border: 1.5px solid #2d79f3;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  justify-content: space-between;
-}
-
-.flex-row > div > label {
-  font-size: 14px;
-  color: black;
-  font-weight: 400;
-}
-
-.span {
-  font-size: 14px;
-  margin-left: 5px;
-  color: #2d79f3;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.button-submit {
-  margin: 20px 0 10px 0;
-  background-color: #151717;
-  border: none;
-  color: white;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 10px;
-  height: 50px;
-  width: 100%;
-  cursor: pointer;
-}
-
-.button-submit:hover {
-  background-color: #252727;
-}
-
-.p {
-  text-align: center;
-  color: black;
-  font-size: 14px;
-  margin: 5px 0;
-}
-
-.btn {
-  margin-top: 10px;
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  gap: 10px;
-  border: 1px solid #ededef;
-  background-color: white;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-}
-
-.btn:hover {
-  border: 1px solid #79a5ec;
-  ;
-}
-
-.error{
-  color: red;
-  margin-bottom: 10px;
-}
-
-/* Media Queries */
-
-@media screen and (max-width: 600px) {
-  .form {
-    width: 90%; /* Ajusta el formulario para que ocupe el 90% del ancho disponible */
-    padding: 20px; /* Reduce el padding para un mejor ajuste en pantallas pequeñas */
-  }
-
-  .button-submit {
-    width: 100%; /* Ajusta el botón de submit para que ocupe el 100% del ancho del formulario */
-  }
-
-  .btn {
-    width: 100%; /* Ajusta los botones de Google y Facebook para que ocupen el 100% del ancho disponible */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .form {
-    width: 100%; /* Ajusta el formulario para que ocupe todo el ancho disponible */
-    padding: 15px; /* Reduce el padding aún más para pantallas muy pequeñas */
-  }
-
-  .inputForm {
-    height: 40px; /* Reduce la altura de los campos de entrada para ahorrar espacio */
-  }
-
-  .button-submit {
-    height: 40px; /* Reduce la altura del botón submit */
-  }
-
-  .btn {  
-    height: 40px; /* Reduce la altura de los botones de Google y Facebook */
-    gap: 5px; /* Reduce el espacio entre el ícono y el texto en los botones */
-  }
-
-  .p {
-    font-size: 13px; /* Reduce el tamaño del texto informativo */
-  }
-}
+@import '../assets/CSS/login.css';
 </style>
-

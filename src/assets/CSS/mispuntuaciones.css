@@ -1,0 +1,111 @@
+.mis-puntuaciones {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  padding: 20px;
+}
+
+.mis-puntuaciones h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.no-puntuaciones {
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.botones-filtro {
+  margin-bottom: 20px;
+}
+
+.botones-filtro button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.botones-filtro button.activo {
+  background-color: #0056b3;
+}
+
+.puntuaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+
+.puntuacion {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+  height: 300px;
+}
+
+.puntuacion:hover {
+  transform: translateY(-5px);
+}
+
+.juego-imagen {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.puntuacion-info {
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .puntuaciones-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .puntuacion {
+    width: 250px;
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .puntuaciones-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .puntuacion {
+    width: 300px;
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .puntuaciones-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  button{
+    margin-top: 10px;
+  }
+
+  .puntuacion {
+    width: 90%;
+    height: auto;
+  }
+
+  .puntuacion-info {
+    font-size: 1rem;
+  }
+}

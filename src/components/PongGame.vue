@@ -130,8 +130,8 @@ export default {
       const user = auth.currentUser;
       if (user) {
         try {
-          let userName = user.email.split('@')[0]; // Obtener la parte antes del '@' del correo electrónico
-          
+          let userName = user.email.split('@')[0]; 
+
           await addDoc(collection(db, 'ranking'), {
             userId: user.uid,
             nombre: userName,
@@ -156,109 +156,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.pong-game {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #000;
-}
-canvas {
-  border: 2px solid #fff;
-}
-.score {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-family: 'Press Start 2P', 'Courier New', 'Courier';
-  text-align: center;
-}
-.big-score {
-  font-size: 40px;
-}
-.game-over {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 24px;
-}
-.game-over button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.game-over button:hover {
-  background-color: #45a049;
-}
-
-/* Media Queries */
-@media screen and (max-width: 600px) {
-  .pong-game {
-    height: 100vh; /* Ajusta la altura del juego para ocupar toda la pantalla en dispositivos pequeños */
-  }
-  
-  canvas {
-    width: 100%; /* Ajusta el ancho del canvas para ocupar todo el ancho disponible */
-    height: auto; /* Ajusta la altura del canvas automáticamente según el ancho */
-    border: 1px solid #fff; /* Ajusta el borde del canvas */
-  }
-
-  .score {
-    top: 5px; /* Mueve la puntuación hacia arriba en pantallas pequeñas */
-    font-size: 24px; /* Reduce el tamaño de la fuente para la puntuación */
-  }
-
-  .big-score {
-    font-size: 24px; /* Reduce el tamaño de la fuente para la puntuación grande */
-  }
-
-  .game-over {
-    font-size: 18px; /* Reduce el tamaño del texto de fin de juego */
-    padding: 20px; /* Aumenta el padding para un mejor espacio en pantallas pequeñas */
-  }
-
-  .game-over button {
-    padding: 8px 16px; /* Ajusta el padding del botón de reinicio */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .pong-game {
-    height: 100vh; /* Ajusta la altura del juego para ocupar toda la pantalla en dispositivos muy pequeños */
-  }
-
-  canvas {
-    width: 100%; /* Ajusta el ancho del canvas para ocupar todo el ancho disponible */
-    height: auto; /* Ajusta la altura del canvas automáticamente según el ancho */
-    border: 1px solid #fff; /* Ajusta el borde del canvas */
-  }
-
-  .score {
-    top: 5px; /* Mueve la puntuación hacia arriba en pantallas muy pequeñas */
-    font-size: 20px; /* Reduce el tamaño de la fuente para la puntuación */
-  }
-
-  .big-score {
-    font-size: 20px; /* Reduce el tamaño de la fuente para la puntuación grande */
-  }
-
-  .game-over {
-    font-size: 16px; /* Reduce el tamaño del texto de fin de juego */
-    padding: 15px; /* Aumenta el padding para un mejor espacio en pantallas muy pequeñas */
-  }
-
-  .game-over button {
-    padding: 6px 12px; /* Ajusta el padding del botón de reinicio */
-    font-size: 14px; /* Reduce el tamaño del texto del botón de reinicio */
-  }
-}
-
+<style>
+@import '../assets/CSS/pong.css';
 </style>

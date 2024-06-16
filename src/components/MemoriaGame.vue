@@ -3,13 +3,8 @@
     <h1>Juego de Memoria</h1>
     <div class="timer">Tiempo restante: {{ timeLeft }} segundos</div>
     <div class="board">
-      <div
-        v-for="(card, index) in cards"
-        :key="index"
-        class="card"
-        :class="{ flipped: card.flipped, matched: card.matched }"
-        @click="flipCard(index)"
-      >
+      <div v-for="(card, index) in cards" :key="index" class="card"
+        :class="{ flipped: card.flipped, matched: card.matched }" @click="flipCard(index)">
         <div class="card-inner">
           <div class="card-front">?</div>
           <div class="card-back">{{ card.value }}</div>
@@ -53,7 +48,6 @@ export default {
       gameOver: false,
       gameOverMessage: '',
       timer: null,
-      userName: '', // Agregamos userName para almacenar el nombre del usuario
     };
   },
   mounted() {
@@ -69,7 +63,7 @@ export default {
       this.cards[index].flipped = true;
       this.flippedCards.push(index);
       if (this.flippedCards.length === 2) {
-        setTimeout(this.checkMatch, 1000); // Delay to show the second card before checking
+        this.checkMatch();
       }
     },
     checkMatch() {
@@ -84,8 +78,10 @@ export default {
           clearInterval(this.timer);
         }
       } else {
-        this.cards[firstIndex].flipped = false;
-        this.cards[secondIndex].flipped = false;
+        setTimeout(() => {
+          this.cards[firstIndex].flipped = false;
+          this.cards[secondIndex].flipped = false;
+        }, 1000); 
       }
       this.flippedCards = [];
     },
@@ -129,7 +125,7 @@ export default {
         try {
           await addDoc(collection(db, 'ranking'), {
             userId: user.uid,
-            nombre: this.userName, // Utilizamos this.userName en lugar de user.displayName
+            nombre: this.userName,
             puntos: points,
             fecha: serverTimestamp(),
             juego: 'Juego de Memoria'
@@ -150,114 +146,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.memory-game {
-  text-align: center;
-}
-
-.timer {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.board {
-  display: grid;
-  grid-template-columns: repeat(4, 100px);
-  gap: 10px;
-  justify-content: center;
-  margin: 0 auto;
-}
-
-.card {
-  width: 100px;
-  height: 100px;
-  perspective: 1000px;
-  cursor: pointer;
-}
-
-.card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s;
-}
-
-.card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-}
-
-.card-front {
-  background-color: #81b3dc;
-  color: #fff;
-}
-
-.card-back {
-  background-color: #fff;
-  border: 2px solid #2196f3;
-  color: #000;
-  transform: rotateY(180deg);
-}
-
-.card.matched .card-back {
-  background-color: #8bc34a;
-  border-color: #8bc34a;
-  color: #fff;
-}
-
-.game-over-message {
-  margin-top: 20px;
-}
-
-/* Media Queries */
-@media screen and (max-width: 768px) {
-  .board {
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila en pantallas más pequeñas */
-  }
-
-  .card {
-    width: 120px; /* Ancho de las cartas */
-    height: 120px; /* Alto de las cartas */
-  }
-
-  .card-inner {
-    width: 100%; /* Ancho del contenido interno de la carta */
-    height: 100%; /* Alto del contenido interno de la carta */
-  }
-
-  .card-front, .card-back {
-    font-size: 20px; /* Tamaño de la fuente en las caras de las cartas */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .board {
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila en pantallas más pequeñas */
-  }
-
-  .card {
-    width: 100px; /* Ancho de las cartas */
-    height: 100px; /* Alto de las cartas */
-  }
-
-  .card-inner {
-    width: 100%; /* Ancho del contenido interno de la carta */
-    height: 100%; /* Alto del contenido interno de la carta */
-  }
-
-  .card-front, .card-back {
-    font-size: 16px; /* Tamaño de la fuente en las caras de las cartas */
-  }
-}
+<style>
+@import '../assets/CSS/memoria.css';
 </style>

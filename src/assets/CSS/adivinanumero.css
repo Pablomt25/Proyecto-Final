@@ -1,0 +1,73 @@
+.game-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.numbers-grid {
+  display: grid;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.numbers-grid button {
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 100px;
+}
+
+.five-columns {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.ten-columns {
+  grid-template-columns: repeat(10, 1fr);
+}
+
+span {
+  color: green;
+}
+
+button.disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+button:not(.disabled):hover {
+  background-color: lightblue;
+}
+
+p {
+  font-size: 16px;
+}
+
+.hint-message {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(44, 125, 129);
+}
+
+.game-over-message,
+.win-message {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .numbers-grid button {
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .numbers-grid button {
+    max-width: 60px;
+  }
+}
+
+@media (max-width: 360px) {
+  .numbers-grid button {
+    max-width: 50px;
+  }
+}

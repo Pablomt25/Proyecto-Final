@@ -2,17 +2,13 @@
   <div class="game-container">
     <h1>Adivina el Número entre 1 y 100</h1>
     <p v-if="gameOver" class="game-over-message">¡El juego ha terminado! El número era: {{ numberToGuess }}</p>
-    <p v-else-if="guessedCorrectly" class="win-message"><span>¡Felicidades! Adivinaste el número {{ numberToGuess }}.</span><br><br> Puntuación: {{ score }} puntos</p>
+    <p v-else-if="guessedCorrectly" class="win-message"><span>¡Felicidades! Adivinaste el número {{ numberToGuess
+        }}.</span><br><br> Puntuación: {{ score }} puntos</p>
     <div v-else>
       <p v-if="message" class="hint-message">{{ message }}</p>
       <div class="numbers-grid" :class="{ 'five-columns': screenWidth <= 600, 'ten-columns': screenWidth > 600 }">
-        <button
-          v-for="num in numbers"
-          :key="num"
-          :disabled="disabledNumbers.includes(num)"
-          :class="{'disabled': disabledNumbers.includes(num)}"
-          @click="checkGuess(num)"
-        >
+        <button v-for="num in numbers" :key="num" :disabled="disabledNumbers.includes(num)"
+          :class="{ 'disabled': disabledNumbers.includes(num) }" @click="checkGuess(num)">
           {{ num }}
         </button>
       </div>
@@ -76,7 +72,7 @@ export default {
       const user = auth.currentUser;
       if (user) {
         try {
-          const userName = this.getUserName(user.email); // Obtener nombre de usuario del correo electrónico
+          const userName = this.getUserName(user.email);
           await addDoc(collection(db, 'ranking'), {
             userId: user.uid,
             nombre: userName,
@@ -117,78 +113,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.game-container {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.numbers-grid {
-  display: grid;
-  gap: 5px;
-  margin-top: 20px;
-}
-
-.numbers-grid button {
-  padding: 10px;
-  cursor: pointer;
-  width: 100%; /* Asegurar que los botones ocupen el ancho completo disponible */
-  max-width: 100px; /* Limitar el ancho máximo de los botones */
-}
-
-.five-columns {
-  grid-template-columns: repeat(5, 1fr); /* 5 columnas en dispositivos móviles */
-}
-
-.ten-columns {
-  grid-template-columns: repeat(10, 1fr); /* 10 columnas en dispositivos de escritorio */
-}
-
-span {
-  color: green;
-}
-
-button.disabled {
-  background-color: lightgray;
-  cursor: not-allowed;
-}
-
-button:not(.disabled):hover {
-  background-color: lightblue;
-}
-
-p {
-  font-size: 16px;
-}
-
-.hint-message {
-  font-size: 20px;
-  font-weight: bold;
-  color: rgb(44, 125, 129);
-}
-
-.game-over-message,
-.win-message {
-  font-size: 24px;
-  font-weight: bold;
-  color: red;
-}
-
-@media (max-width: 768px) {
-  .numbers-grid button {
-    max-width: 80px; /* Ajuste de ancho máximo para dispositivos medianos */
-  }
-}
-
-@media (max-width: 480px) {
-  .numbers-grid button {
-    max-width: 60px; /* Ajuste de ancho máximo para dispositivos pequeños */
-  }
-}
-
-@media (max-width: 360px) {
-  .numbers-grid button {
-    max-width: 50px; /* Ajuste de ancho máximo para dispositivos muy pequeños */
-  }
-}
+<style>
+@import '../assets/CSS/adivinanumero.css';
 </style>

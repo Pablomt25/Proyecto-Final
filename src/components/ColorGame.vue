@@ -1,26 +1,21 @@
 <template>
   <div class="guess-color-game">
-    <div class="color-box" :style="{ backgroundColor: targetColor, boxShadow: correctColor ? '0px 0px 20px green' : (incorrectColor ? '0px 0px 20px red' : 'none') }">
+    <div class="color-box"
+      :style="{ backgroundColor: targetColor, boxShadow: correctColor ? '0px 0px 20px green' : (incorrectColor ? '0px 0px 20px red' : 'none') }">
       <p>¿Qué color es este?</p>
     </div>
     <div class="color-options">
-      <div
-        v-for="(color, index) in options"
-        :key="index"
-        class="option"
-        :style="{ backgroundColor: color }"
-        @click="checkAnswer(color)"
-        :disabled="gameOver"
-      ></div>
+      <div v-for="(color, index) in options" :key="index" class="option" :style="{ backgroundColor: color }"
+        @click="checkAnswer(color)" :disabled="gameOver"></div>
     </div>
     <div class="lives">
       <p>Vidas: {{ lives }}</p>
     </div>
     <div class="score">
-      <p>Aciertos: {{ correctGuesses }}</p>
+      <p class="aciertos">Aciertos: {{ correctGuesses }}</p>
       <p v-if="gameOver && correctGuesses >= 15">Puntos: {{ calculatePoints() }}</p>
     </div>
-    <div class="game-over" v-if="gameOver">
+    <div class="game-over" style="background-color: black; padding: 15px; border-radius:10px ;" v-if="gameOver">
       <p v-if="correctGuesses >= 15">¡Has ganado!</p>
       <p v-else>¡Has perdido!</p>
       <p v-if="livesLost > 0">Has perdido {{ livesLost }} vidas</p>
@@ -52,7 +47,6 @@ export default {
       seconds: 0,
       timer: null,
       gameOver: false,
-      userName: '', // Agregamos userName para almacenar el nombre del usuario
     };
   },
   mounted() {
@@ -62,13 +56,10 @@ export default {
   },
   methods: {
     generateRandomColor() {
-      // Generar un color aleatorio hexadecimal
       const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-      
-      // Asignar el color aleatorio como el color objetivo
+
       this.targetColor = randomColor;
 
-      // Generar tres colores aleatorios adicionales (incluyendo el color objetivo)
       const randomColors = [randomColor];
       while (randomColors.length < 4) {
         const newColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -77,21 +68,16 @@ export default {
         }
       }
 
-      // Barajar los colores aleatorios
       this.options = this.shuffle(randomColors);
     },
     shuffle(array) {
-      // Función para barajar un array
       let currentIndex = array.length, randomIndex;
 
-      // Mientras queden elementos que barajar
       while (currentIndex != 0) {
 
-        // Elegir un elemento restante
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        // E intercambiarlo con el elemento actual
         [array[currentIndex], array[randomIndex]] = [
           array[randomIndex], array[currentIndex]];
       }
@@ -155,7 +141,7 @@ export default {
         try {
           await addDoc(collection(db, 'ranking'), {
             userId: user.uid,
-            nombre: this.userName, // Utilizamos this.userName en lugar de user.displayName
+            nombre: this.userName,
             puntos: this.correctGuesses >= 15 ? this.calculatePoints() : 0,
             fecha: serverTimestamp(),
             juego: 'Adivina el Color'
@@ -186,108 +172,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.guess-color-game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.color-box {
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  color: white;
-}
-
-.color-options {
-  display: flex;
-}
-
-.option {
-  width: 80px;
-  height: 80px;
-  margin: 0 10px;
-  cursor: pointer;
-}
-
-.lives {
-  margin-top: 10px;
-}
-
-.score {
-  margin-top: 10px;
-}
-
-.game-over {
-  margin-top: 20px;
-}
-  
-.timer {
-  margin-top: 10px;
-}
-
-/* Media Queries */
-@media screen and (max-width: 600px) {
-  .guess-color-game {
-    height: 100vh; /* Ajusta la altura del juego para ocupar toda la pantalla en dispositivos pequeños */
-  }
-
-  .color-box {
-    width: 150px; /* Reduce el tamaño del color-box */
-    height: 150px; /* Reduce el tamaño del color-box */
-    font-size: 18px; /* Reduce el tamaño del texto dentro del color-box */
-  }
-
-  .option {
-    width: 60px; /* Reduce el tamaño de las opciones de color */
-    height: 60px; /* Reduce el tamaño de las opciones de color */
-    margin: 0 5px; /* Reduce el margen entre las opciones de color */
-  }
-
-  .lives,
-  .score,
-  .game-over,
-  .timer {
-    font-size: 14px; /* Reduce el tamaño del texto en los elementos de información */
-  }
-
-  .game-over button {
-    padding: 8px 16px; /* Ajusta el padding del botón de reinicio */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .guess-color-game {
-    height: 100vh; /* Ajusta la altura del juego para ocupar toda la pantalla en dispositivos muy pequeños */
-  }
-
-  .color-box {
-    width: 120px; /* Reduce aún más el tamaño del color-box */
-    height: 120px; /* Reduce aún más el tamaño del color-box */
-    font-size: 16px; /* Reduce el tamaño del texto dentro del color-box */
-  }
-
-  .option {
-    width: 50px; /* Reduce el tamaño de las opciones de color */
-    height: 50px; /* Reduce el tamaño de las opciones de color */
-    margin: 0 3px; /* Reduce el margen entre las opciones de color */
-  }
-
-  .lives,
-  .score,
-  .game-over,
-  .timer {
-    font-size: 12px; /* Reduce el tamaño del texto en los elementos de información */
-  }
-
-  .game-over button {
-    padding: 6px 12px; /* Ajusta el padding del botón de reinicio */
-    font-size: 12px; /* Reduce el tamaño del texto del botón de reinicio */
-  }
-}
-
+<style>
+@import '../assets/CSS/color.css';
 </style>

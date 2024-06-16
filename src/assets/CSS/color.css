@@ -1,0 +1,107 @@
+.guess-color-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.color-box {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.color-options {
+  display: flex;
+}
+
+.option {
+  width: 80px;
+  height: 80px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.lives {
+  margin-top: 10px;
+}
+
+.score {
+  margin-top: 10px;
+}
+
+.game-over {
+  margin-top: 20px;
+}
+
+.timer {
+  margin-top: 10px;
+}
+
+.aciertos{
+  margin-top: 78px;
+}
+
+@media screen and (max-width: 600px) {
+  .guess-color-game {
+    height: 100vh;
+  }
+
+  .color-box {
+    width: 150px;
+    height: 150px;
+    font-size: 18px;
+  }
+
+  .option {
+    width: 60px;
+    height: 60px;
+    margin: 0 5px;
+  }
+  
+
+  .lives,
+  .score,
+  .game-over,
+  .timer {
+    font-size: 14px;
+  }
+
+  .game-over button {
+    padding: 8px 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .guess-color-game {
+    height: 100vh;
+    margin-top: 30px;
+  }
+
+  .color-box {
+    width: 120px;
+    height: 120px;
+    font-size: 16px;
+  }
+
+  .option {
+    width: 50px;
+    height: 50px;
+    margin: 0 3px;
+  }
+
+  .lives,
+  .score,
+  .game-over,
+  .timer {
+    font-size: 12px;
+  }
+
+  .game-over button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

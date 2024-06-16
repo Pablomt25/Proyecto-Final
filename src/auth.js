@@ -1,4 +1,3 @@
-// src/auth.js
 import { reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { auth } from './firebase'
@@ -20,7 +19,6 @@ const initAuthState = () => {
       setAuthenticated(true, user)
     } else {
       setAuthenticated(false)
-      // Redirigir a la página de inicio cuando el usuario cierra sesión
       if (router.currentRoute.value.path !== '/') {
         router.push('/')
       }
@@ -36,7 +34,6 @@ const signOut = async () => {
   }
 }
 
-// Observar cambios en la autenticación y redirigir cuando se cierra sesión
 watch(
   () => state.isAuthenticated,
   (newVal) => {
@@ -51,5 +48,5 @@ export default {
   state,
   setAuthenticated,
   initAuthState,
-  signOut // Agregado el método signOut
+  signOut 
 }
